@@ -18,5 +18,3 @@ use Whoops\Run;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
