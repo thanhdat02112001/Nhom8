@@ -11,7 +11,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      DB_DATABASE: book_store
+      DB_DATABASE: shoppc
       DB_USER: root
       DB_PASSWORD: password
     steps:
@@ -30,7 +30,10 @@ jobs:
     - name: install mysql-server
       run: sudo apt-get install mysql-server
     - name: Create Database
-      run: mysql -u root -e 'CREATE DATABASE '"shoppc"';'
+      run:  |
+            service mysql stop
+            systemctl start mysql
+            mysql -u root -e 'CREATE DATABASE '"shoppc"';'
     - name: Run migration
       run: php artisan migrate
     - name: Execute tests
